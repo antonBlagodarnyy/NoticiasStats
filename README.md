@@ -19,12 +19,12 @@ Estadístcas de noticieros españoles sin animo de lucro.
 
 ## v0.0.1-next
 
-1. Recopilación de páginas modelo.
-2. Definición de los datos a recopilar.
-3. Definición de las estadísticas a servir.
-4. DML de la bd.
-5. Definicion del JPA del batch y de la api.
-6. Codificación del scrapper.
-7. Codificación de la api.
-8. Códificacion del cliente.
-9. Despliegue.
+1. [ ] Recopilación de páginas modelo.
+2. [ ] Definición de los datos a recopilar.
+3. [ ] Definición de las estadísticas a servir.
+4. [ ] DML de la bd.
+5. [ ] Definicion del JPA del batch y de la api.
+6. [ ] Codificación del scrapper.
+7. [ ] Codificación de la api.
+8. [ ] Códificacion del cliente.
+9. [ ] Despliegue.
