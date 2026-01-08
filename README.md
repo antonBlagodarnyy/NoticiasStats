@@ -34,7 +34,7 @@ Estadístcas de noticieros españoles sin animo de lucro.
 
 ## v0.0.1-next
 
-1. [ ] Recopilación de páginas modelo.
+1. [x] Recopilación de páginas modelo.
 2. [ ] Definición de los datos a recopilar.
 3. [ ] Definición de las estadísticas a servir.
 4. [ ] DML de la bd.
