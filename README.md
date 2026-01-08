@@ -17,6 +17,11 @@ Estadístcas de noticieros españoles sin animo de lucro.
 - Springboot.
 - Angular.
 
+## v1.0.0-next
+
+1. [ ] Codificación del cliente.
+2. [ ] Despliegue.
+
 ## v0.0.1-next
 
 1. [ ] Recopilación de páginas modelo.
@@ -26,5 +31,3 @@ Estadístcas de noticieros españoles sin animo de lucro.
 5. [ ] Definicion del JPA del batch y de la api.
 6. [ ] Codificación del scrapper.
 7. [ ] Codificación de la api.
-8. [ ] Códificacion del cliente.
-9. [ ] Despliegue.
