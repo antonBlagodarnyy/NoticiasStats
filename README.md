@@ -17,6 +17,16 @@ Estadístcas de noticieros españoles sin animo de lucro.
 - Springboot.
 - Angular.
 
+## Noticieros usados
+
+- [https://www.rtve.es/](RTVE)
+- [https://www.elmundo.es](El Mundo)
+- [https://www.20minutos.es/](20 Minutos)
+- [https://www.larazon.es/](La Razón)
+- [https://elpais.com/](El país)
+- [https://www.abc.es/](ABC)
+- [https://www.eldiario.es/](El Diario)
+
 ## v1.0.0-next
 
 1. [ ] Codificación del cliente.
