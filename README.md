@@ -19,13 +19,13 @@ Estadístcas de noticieros españoles sin animo de lucro.
 
 ## Noticieros usados
 
-- [https://www.rtve.es/](RTVE)
-- [https://www.elmundo.es](El Mundo)
-- [https://www.20minutos.es/](20 Minutos)
-- [https://www.larazon.es/](La Razón)
-- [https://elpais.com/](El país)
-- [https://www.abc.es/](ABC)
-- [https://www.eldiario.es/](El Diario)
+- [RTVE](https://www.rtve.es/)
+- [El Mundo](https://www.elmundo.es)
+- [20 Minutos](https://www.20minutos.es/)
+- [La Razón](https://www.larazon.es/)
+- [El país](https://elpais.com/)
+- [ABC](https://www.abc.es/)
+- [El Diario](https://www.eldiario.es/)
 
 ## v1.0.0-next
 
