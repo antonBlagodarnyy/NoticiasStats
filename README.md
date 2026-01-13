@@ -27,6 +27,19 @@ Estadístcas de noticieros españoles sin animo de lucro.
 - [ABC](https://www.abc.es/)
 - [El Diario](https://www.eldiario.es/)
 
+## Estadísticas
+
+- Número de noticias por día / semana / mes diferenciadas por noticiero.
+
+
+## v1.0.1-next
+
+### Añadidas estadísticas
+
+1. Paises mas nombrados. 
+2. Clasificar todas las noticias por categoría.
+
+
 ## v1.0.0-next
 
 1. [ ] Codificación del cliente.
@@ -34,10 +47,9 @@ Estadístcas de noticieros españoles sin animo de lucro.
 
 ## v0.0.1-next
 
-1. [x] Recopilación de páginas modelo.
-2. [ ] Definición de los datos a recopilar.
-3. [ ] Definición de las estadísticas a servir.
-4. [ ] DML de la bd.
-5. [ ] Definicion del JPA del batch y de la api.
-6. [ ] Codificación del scrapper.
-7. [ ] Codificación de la api.
+1. [x] Definición de los datos a recopilar.
+2. [x] Definición de las estadísticas a servir.
+3. [x] DDL de la bd.
+4. [ ] Definicion del JPA del batch y de la api.
+5. [ ] Codificación del scrapper.
+6. [ ] Codificación de la api.
