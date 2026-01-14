@@ -1,25 +1,25 @@
-USE noticiasScrapper_db;
+USE news_scraper_db;
 
-DROP TABLE IF EXISTS articulo;
-DROP TABLE IF EXISTS periodico;
+DROP TABLE IF EXISTS articles;
+DROP TABLE IF EXISTS newspapers;
 
-CREATE TABLE `periodico`
+CREATE TABLE `newspapers`
 (
     id       INT AUTO_INCREMENT PRIMARY KEY,
-    nombre    VARCHAR(255) NOT NULL UNIQUE,
-    link VARCHAR(255) NOT NULL
+    name    VARCHAR(255) NOT NULL UNIQUE,
+    url VARCHAR(255) NOT NULL UNIQUE
 );
 
-CREATE TABLE `articulo`
+CREATE TABLE `articles`
 (
-    id      INT          NOT NULL,
-    periodico_id INT NOT NULL,
-    titular VARCHAR(255) NOT NULL,
-    link VARCHAR(255) NOT NULL,
-    fecha DATE NOT NULL DEFAULT (CURRENT_DATE),
+    id      INT AUTO_INCREMENT NOT NULL,
+    newspaper_id INT NOT NULL,
+    headline VARCHAR(255) NOT NULL,
+    url VARCHAR(255) NOT NULL UNIQUE,
+    published_at DATE NOT NULL,
     PRIMARY KEY (id),
-    CONSTRAINT fk_articulo_periodico
-        FOREIGN KEY  (periodico_id)
-            REFERENCES `periodico` (id)
+    CONSTRAINT fk_article_newspaper
+        FOREIGN KEY  (newspaper_id)
+            REFERENCES `newspapers` (id)
             ON DELETE CASCADE
 );
