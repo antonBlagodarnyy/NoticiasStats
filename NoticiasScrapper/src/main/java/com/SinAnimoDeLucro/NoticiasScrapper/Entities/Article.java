@@ -19,7 +19,7 @@ public class Article {
     @Column(nullable = false, unique = true)
     private String url;
 
-    @Column(nullable = false)
+    @Column(name = "published_at", nullable = false)
     private LocalDate publishedAt;
 
     @ManyToOne
