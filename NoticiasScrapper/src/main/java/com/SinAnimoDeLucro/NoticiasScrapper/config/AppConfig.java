@@ -13,7 +13,7 @@ public class AppConfig {
   public DataSource dataSource() {
     DriverManagerDataSource dataSource = new DriverManagerDataSource();
     dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
-    dataSource.setUrl("jdbc:mysql://localhost:3306/noticiasScrapper_db");
+    dataSource.setUrl("jdbc:mysql://localhost:3306/news_scraper_db");
     dataSource.setUsername("root");
     dataSource.setPassword("root1234");
     return dataSource;

@@ -21,12 +21,4 @@ public class Newspaper{
 
     @OneToMany(mappedBy = "newspaper", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Article> articles;
-    
-    public Newspaper() {
-    }
-
-    public Newspaper(String url, String name) {
-        this.url = url;
-        this.name = name;
-    }
 }

@@ -25,4 +25,11 @@ public class Article {
     @ManyToOne
     @JoinColumn(name = "newspaper_id", nullable = false)
     private Newspaper newspaper;
+
+    public Article(String headline, String url, LocalDate publishedAt, Newspaper newspaper) {
+        this.headline = headline;
+        this.url = url;
+        this.publishedAt = publishedAt;
+        this.newspaper = newspaper;
+    }
 }

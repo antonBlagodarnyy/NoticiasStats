@@ -1,4 +1,4 @@
-package com.SinAnimoDeLucro.NoticiasScrapper.steps;
+package com.SinAnimoDeLucro.NoticiasScrapper.Steps;
 
 import lombok.extern.slf4j.Slf4j;
 import org.jspecify.annotations.Nullable;
@@ -10,11 +10,9 @@ import org.springframework.stereotype.Component;
 
 @Component
 @Slf4j
-public class ItemReaderStep implements Tasklet {
-
+public class ItemWriterStep implements Tasklet {
   @Override
   public @Nullable RepeatStatus execute(StepContribution contribution, ChunkContext chunkContext) throws Exception {
-    log.info("-----> Leyendo el HTML de la página web... <-----");
 
     return null;
   }
