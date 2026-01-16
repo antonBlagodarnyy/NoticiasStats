@@ -1,4 +1,4 @@
-package com.SinAnimoDeLucro.NoticiasScrapper.Config;
+package com.SinAnimoDeLucro.NoticiasScraper.Config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -13,9 +13,9 @@ public class AppConfig {
   public DataSource dataSource() {
     DriverManagerDataSource dataSource = new DriverManagerDataSource();
     dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
-    dataSource.setUrl("jdbc:mysql://localhost:3306/news_scraper_db");
-    dataSource.setUsername("root");
-    dataSource.setPassword("root1234");
+    dataSource.setUrl("${DB_URL}");
+    dataSource.setUsername("${DB_USER}");
+    dataSource.setPassword("${DB_PASSWORD}");
     return dataSource;
   }
 }

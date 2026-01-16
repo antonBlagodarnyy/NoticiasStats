@@ -1,6 +1,6 @@
-package com.SinAnimoDeLucro.NoticiasScrapper.Repositories;
+package com.SinAnimoDeLucro.NoticiasScraper.Repositories;
 
-import com.SinAnimoDeLucro.NoticiasScrapper.Entities.Article;
+import com.SinAnimoDeLucro.NoticiasScraper.Entities.Article;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface ArticleRepository extends JpaRepository<Article, Integer> {

@@ -1,8 +1,8 @@
-package com.SinAnimoDeLucro.NoticiasScrapper.Steps;
+package com.SinAnimoDeLucro.NoticiasScraper.Steps;
 
-import com.SinAnimoDeLucro.NoticiasScrapper.Entities.Article;
-import com.SinAnimoDeLucro.NoticiasScrapper.Entities.Newspaper;
-import com.SinAnimoDeLucro.NoticiasScrapper.Services.NewsPaperServiceImpl;
+import com.SinAnimoDeLucro.NoticiasScraper.Entities.Article;
+import com.SinAnimoDeLucro.NoticiasScraper.Entities.Newspaper;
+import com.SinAnimoDeLucro.NoticiasScraper.Services.NewsPaperServiceImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -14,7 +14,6 @@ import org.springframework.batch.core.step.StepContribution;
 import org.springframework.batch.core.step.tasklet.Tasklet;
 import org.springframework.batch.infrastructure.repeat.RepeatStatus;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cglib.core.Local;
 import org.springframework.stereotype.Component;
 
 import java.text.SimpleDateFormat;
@@ -69,7 +68,7 @@ public class RtveScrapingStep implements Tasklet {
           log.error("Error al obtener el detalle de la noticia: " + e.getMessage());
         }
       }
-      log.info("Newspaper: " + newsToday);
+//      log.info("Newspaper: " + newsToday);
     } catch (Exception e) {
       log.error("Error al procesar la página web: " + e.getMessage());
     }

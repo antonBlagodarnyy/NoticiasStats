@@ -1,7 +1,6 @@
-package com.SinAnimoDeLucro.NoticiasScrapper.Repositories;
+package com.SinAnimoDeLucro.NoticiasScraper.Repositories;
 
-import com.SinAnimoDeLucro.NoticiasScrapper.Entities.Newspaper;
-import org.springframework.data.jpa.repository.JpaRepository;
+import com.SinAnimoDeLucro.NoticiasScraper.Entities.Newspaper;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 

@@ -1,5 +1,6 @@
 #DROP DATABASE news_scraper_db;
-CREATE DATABASE news_scraper_db;
+#CREATE DATABASE news_scraper_db;
+
 USE news_scraper_db;
 
 DROP TABLE IF EXISTS articles;

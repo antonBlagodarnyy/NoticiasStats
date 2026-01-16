@@ -1,4 +1,4 @@
-package com.SinAnimoDeLucro.NoticiasScrapper;
+package com.SinAnimoDeLucro.NoticiasScraper;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
