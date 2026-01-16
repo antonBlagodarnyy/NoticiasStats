@@ -1,3 +1,5 @@
+#DROP DATABASE news_scraper_db;
+CREATE DATABASE news_scraper_db;
 USE news_scraper_db;
 
 DROP TABLE IF EXISTS articles;
@@ -14,7 +16,7 @@ CREATE TABLE `articles`
 (
     id      INT AUTO_INCREMENT NOT NULL,
     newspaper_id INT NOT NULL,
-    headline VARCHAR(255) NOT NULL,
+    headline TEXT NOT NULL,
     url VARCHAR(255) NOT NULL UNIQUE,
     published_at DATE NOT NULL,
     PRIMARY KEY (id),
