@@ -69,7 +69,7 @@ public class RtveScrapingStep implements Tasklet {
           log.error("Error al obtener el detalle de la noticia: " + e.getMessage());
         }
       }
-      log.info("Newspaper: " + newsToday);
+//      log.info("Newspaper: " + newsToday);
     } catch (Exception e) {
       log.error("Error al procesar la página web: " + e.getMessage());
     }

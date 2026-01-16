@@ -11,7 +11,6 @@ public class Article {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Lob
     @Column(nullable = false, columnDefinition = "TEXT")
     private String headline;
 

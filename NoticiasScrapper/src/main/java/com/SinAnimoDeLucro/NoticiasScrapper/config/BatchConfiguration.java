@@ -1,5 +1,6 @@
 package com.SinAnimoDeLucro.NoticiasScrapper.Config;
 
+import com.SinAnimoDeLucro.NoticiasScrapper.Steps.ItemWriterStep;
 import com.SinAnimoDeLucro.NoticiasScrapper.Steps.RtveScrapingStep;
 import org.springframework.batch.core.configuration.annotation.EnableBatchProcessing;
 import org.springframework.batch.core.configuration.annotation.JobScope;
@@ -21,11 +22,13 @@ public class BatchConfiguration {
   private JobRepository jobRepository;
   private PlatformTransactionManager transactionManager;
   private RtveScrapingStep rtveScrapingStep;
+  private ItemWriterStep itemWriterStep;
 
-  public BatchConfiguration(JobRepository jobRepository, PlatformTransactionManager transactionManager, RtveScrapingStep rtveScrapingStep) {
+  public BatchConfiguration(JobRepository jobRepository, PlatformTransactionManager transactionManager, RtveScrapingStep rtveScrapingStep, ItemWriterStep itemWriterStep) {
     this.jobRepository = jobRepository;
     this.transactionManager = transactionManager;
     this.rtveScrapingStep = rtveScrapingStep;
+    this.itemWriterStep = itemWriterStep;
   }
 
   @Bean
@@ -36,9 +39,17 @@ public class BatchConfiguration {
   }
 
   @Bean
+  public Step writingStep() {
+    return new StepBuilder("itemWriterStep", jobRepository)
+      .tasklet(itemWriterStep, transactionManager)
+      .build();
+  }
+
+  @Bean
   public Job runScraperJob(){
     return new JobBuilder("runScraperJob", jobRepository)
       .start(scrapingStep())
+      .next(writingStep())
       .build();
   }
 }
