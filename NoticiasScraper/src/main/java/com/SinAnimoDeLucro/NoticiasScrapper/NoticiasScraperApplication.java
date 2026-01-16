@@ -4,10 +4,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class NoticiasScrapperApplication {
+public class NoticiasScraperApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(NoticiasScrapperApplication.class, args);
+		SpringApplication.run(NoticiasScraperApplication.class, args);
 	}
 
 }

@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.SinAnimoDeLucro</groupId>
-	<artifactId>NoticiasScrapper</artifactId>
+	<artifactId>NoticiasScraper</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>NoticiasScrapper</name>
-	<description>Scrapper de noticias españolas</description>
+	<description>Scraper de noticias españolas</description>
 	<url/>
 	<licenses>
 		<license/>
