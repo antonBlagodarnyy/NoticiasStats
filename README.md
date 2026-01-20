@@ -50,6 +50,6 @@ Estadístcas de noticieros españoles sin animo de lucro.
 1. [x] Definición de los datos a recopilar.
 2. [x] Definición de las estadísticas a servir.
 3. [x] DDL de la bd.
-4. [ ] Definicion del JPA del batch y de la api.
+4. [x] Definición del JPA del batch y de la api.
 5. [ ] Codificación del scrapper.
 6. [ ] Codificación de la api.
