@@ -18,4 +18,10 @@ public class ArticleServiceImpl implements IArticleService{
   public void saveAll(List<Article> articles) {
     articleRepository.saveAll(articles);
   }
+
+  @Transactional(readOnly = true)
+  @Override
+  public boolean existsByUrl(String url) {
+    return articleRepository.existsByUrl(url);
+  }
 }
