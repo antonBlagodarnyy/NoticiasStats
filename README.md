@@ -5,7 +5,7 @@ Estadístcas de noticieros españoles sin animo de lucro.
 
 1. Base de datos.
 2. Batch:
-    - Scrapper de las páginas de los principales noticieros españoles.
+    - Scraper de las páginas de los principales noticieros españoles.
     - Cleaner para borrar las noticias de hace 7 días.
     - Batch Scheduler que lance los procesos 1 vez al día.
 4. Api para transformar los datos en estadísticas.
@@ -32,12 +32,16 @@ Estadístcas de noticieros españoles sin animo de lucro.
 - Número de noticias por día / semana / mes diferenciadas por noticiero.
 
 
-## v1.0.1-next
+## v1.1.0-next
 
 ### Añadidas estadísticas
 
-1. Paises mas nombrados. 
+1. Países mas nombrados. 
 2. Clasificar todas las noticias por categoría.
+
+### Mejoras de código
+
+- Cambio List por Set para evitar filtro de noticias repetidas.
 
 
 ## v1.0.0-next
@@ -51,5 +55,5 @@ Estadístcas de noticieros españoles sin animo de lucro.
 2. [x] Definición de las estadísticas a servir.
 3. [x] DDL de la bd.
 4. [x] Definición del JPA del batch y de la api.
-5. [ ] Codificación del scrapper.
+5. [x] Codificación del scraper.
 6. [ ] Codificación de la api.
