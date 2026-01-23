@@ -1,4 +1,6 @@
 package com.SinAnimoDeLucro.NoticiasApi.Dto;
 
-public class ArticleDTO {
+import java.time.LocalDate;
+
+public record ArticleDTO(String headline, String url, LocalDate publishedAt) {
 }

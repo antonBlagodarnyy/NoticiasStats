@@ -36,18 +36,24 @@ Estadístcas de noticieros españoles sin animo de lucro.
 
 ### Añadidas estadísticas
 
-1. Países mas nombrados. 
-2. Clasificar todas las noticias por categoría.
+- Países mas nombrados. 
+- Clasificar todas las noticias por categoría.
 
 ### Mejoras de código
 
 - Cambio List por Set para evitar filtro de noticias repetidas.
+- Evita links con 404.
 
+### Mejoras generales
+
+- Limite de solicitudes en la api.
 
 ## v1.0.0-next
 
 1. [ ] Codificación del cliente.
-2. [ ] Despliegue.
+2. [ ] Codificación del scheduler.
+3. [ ] Añadidos todos los noticieros.
+4. [ ] Despliegue.
 
 ## v0.0.1-next
 
@@ -56,4 +62,4 @@ Estadístcas de noticieros españoles sin animo de lucro.
 3. [x] DDL de la bd.
 4. [x] Definición del JPA del batch y de la api.
 5. [x] Codificación del scraper.
-6. [ ] Codificación de la api.
+6. [x] Codificación de la api.

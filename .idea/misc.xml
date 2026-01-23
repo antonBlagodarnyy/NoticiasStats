@@ -6,6 +6,7 @@
       <list>
         <option value="$PROJECT_DIR$/NoticiasScrapper/pom.xml" />
         <option value="$PROJECT_DIR$/NoticiasApi/pom.xml" />
+        <option value="$PROJECT_DIR$/NoticiasScraper/pom.xml" />
       </list>
     </option>
   </component>
