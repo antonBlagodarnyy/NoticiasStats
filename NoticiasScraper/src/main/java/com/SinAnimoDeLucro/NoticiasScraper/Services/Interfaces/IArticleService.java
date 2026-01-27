@@ -1,7 +1,6 @@
-package com.SinAnimoDeLucro.NoticiasScraper.Services;
+package com.SinAnimoDeLucro.NoticiasScraper.Services.Interfaces;
 
 import com.SinAnimoDeLucro.NoticiasScraper.Entities.Article;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 

@@ -1,7 +1,8 @@
-package com.SinAnimoDeLucro.NoticiasScraper.Services;
+package com.SinAnimoDeLucro.NoticiasScraper.Services.Implementacion;
 
 import com.SinAnimoDeLucro.NoticiasScraper.Entities.Article;
 import com.SinAnimoDeLucro.NoticiasScraper.Repositories.ArticleRepository;
+import com.SinAnimoDeLucro.NoticiasScraper.Services.Interfaces.IArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -9,7 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service
-public class ArticleServiceImpl implements IArticleService{
+public class ArticleServiceImpl implements IArticleService {
   @Autowired
   private ArticleRepository articleRepository;
 

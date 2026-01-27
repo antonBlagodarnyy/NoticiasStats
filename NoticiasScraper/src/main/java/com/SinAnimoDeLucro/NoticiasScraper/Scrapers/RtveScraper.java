@@ -1,9 +1,10 @@
 package com.SinAnimoDeLucro.NoticiasScraper.Scrapers;
 
 import com.SinAnimoDeLucro.NoticiasScraper.Entities.Article;
+import com.SinAnimoDeLucro.NoticiasScraper.Entities.Newspaper;
 import com.SinAnimoDeLucro.NoticiasScraper.Interfaces.Scraper;
-import com.SinAnimoDeLucro.NoticiasScraper.Services.ArticleServiceImpl;
-import com.SinAnimoDeLucro.NoticiasScraper.Services.NewsPaperServiceImpl;
+import com.SinAnimoDeLucro.NoticiasScraper.Services.Implementacion.ArticleServiceImpl;
+import com.SinAnimoDeLucro.NoticiasScraper.Services.Implementacion.NewsPaperServiceImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -30,50 +31,63 @@ public class RtveScraper implements Scraper {
 
   @Override
   public List<Article> scrape(String url) {
-    log.info("-----> Leyendo el HTML del noticiero RTVE... <-----");
+    log.info("-----> [RtveScraper] -> Leyendo el HTML del noticiero RTVE... <-----");
+    Newspaper rtve = newsPaperService.findByName("RTVE");
+    SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
+    Calendar now = Calendar.getInstance();
     List<Article> newsToday = new ArrayList<>();
 
     try {
       Document doc = Jsoup.connect(url).get();
       Elements newsItems = doc.select("article");
       for (Element newsItem : newsItems) {
-        String urlNews = newsItem.select("a").attr("abs:href");
+        Element urlNewsEl = newsItem.selectFirst("a");
+
+        if(urlNewsEl == null) continue;
+        String urlNews = urlNewsEl.attr("abs:href");
 
         if (articleService.existsByUrl(urlNews)) {
-          log.debug("Noticia duplicada, se ignora: {}", urlNews);
+          log.debug("[RtveScraper] -> Noticia duplicada, se ignora: {}", urlNews);
           continue;
         }
 
         try {
           Document newsDoc = Jsoup.connect(urlNews).get();
+          Element headline = newsDoc.selectFirst("span.maintitle");
+          Element category = newsDoc.selectFirst("span.pretitle");
           Element publicationDate = newsDoc.selectFirst("span.datpub");
 
-          if (publicationDate == null) {
-            log.debug("Noticia sin fecha, se ignora: {}", urlNews);
+          if (publicationDate == null || category == null || category.text().isEmpty() || headline == null) {
+            log.debug("[RtveScraper] -> Noticia incompleta, se ignora: {}", urlNews);
             continue;
           }
 
-
           String dateText = publicationDate.text().split("-")[0].trim();
-          SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
-          Calendar now = Calendar.getInstance();
 
           if (dateFormat.format(now.getTime()).equals(dateText)) {
-            String headline = newsDoc.select("span.maintitle").text();
             LocalDate date = LocalDate.now();
-            newsToday.add(new Article(headline, urlNews, date, newsPaperService.findByName("RTVE")));
+            Article article = new Article(headline.text(), urlNews, category.text(), date, rtve);
+
+            //Check the article is not duplicated
+            boolean exists = newsToday.stream()
+              .map(Article::getUrl)
+              .anyMatch(urlNews::equals);
+
+            if (!exists) {
+              newsToday.add(article);
+            } else {
+              log.warn("[VeinteMinutosScraper] -> Duplicated article in source");
+            }
           }
         } catch (Exception e) {
-          log.error("Error al obtener el detalle de la noticia: " + e.getMessage());
+          log.error("[RtveScraper] -> Error al obtener el detalle de la noticia: {}", url, e);
         }
       }
-//      log.info("Newspaper: " + newsToday);
     } catch (Exception e) {
-      log.error("Error al procesar la página web: " + e.getMessage());
+      log.error("[RtveScraper] -> Error al procesar la página web: " + e.getMessage());
     }
 
-    log.info("-----> Fin del paso de lectura de news del día <-----");
-
+    log.info("-----> [RtveScraper] -> Fin del paso de lectura de news del día <-----");
 
     return newsToday;
   }

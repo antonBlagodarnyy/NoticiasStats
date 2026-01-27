@@ -25,6 +25,6 @@ public class ArticleServiceImpl implements IArticleService {
 
     @Override
     public ArticleDTO mapToDto(Article a) {
-        return new ArticleDTO(a.getHeadline(), a.getUrl(), a.getPublishedAt());
+        return new ArticleDTO(a.getHeadline(), a.getUrl(), a.getCategory(), a.getPublishedAt());
     }
 }

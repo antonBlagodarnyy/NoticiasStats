@@ -17,6 +17,9 @@ public class Article {
     @Column(nullable = false, unique = true)
     private String url;
 
+    @Column(nullable = false)
+    private String category;
+
     @Column(name = "published_at", nullable = false)
     private LocalDate publishedAt;
 
@@ -37,7 +40,6 @@ public class Article {
     public Integer getId() {
         return id;
     }
-
     public void setId(Integer id) {
         this.id = id;
     }
@@ -45,7 +47,6 @@ public class Article {
     public String getHeadline() {
         return headline;
     }
-
     public void setHeadline(String headline) {
         this.headline = headline;
     }
@@ -53,15 +54,16 @@ public class Article {
     public String getUrl() {
         return url;
     }
-
     public void setUrl(String url) {
         this.url = url;
     }
 
+    public String getCategory() {return category;}
+    public void setCategory(String category) {}
+
     public LocalDate getPublishedAt() {
         return publishedAt;
     }
-
     public void setPublishedAt(LocalDate publishedAt) {
         this.publishedAt = publishedAt;
     }

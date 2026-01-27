@@ -1,15 +1,15 @@
-package com.SinAnimoDeLucro.NoticiasScraper.Services;
+package com.SinAnimoDeLucro.NoticiasScraper.Services.Implementacion;
 
 import com.SinAnimoDeLucro.NoticiasScraper.Entities.Newspaper;
 import com.SinAnimoDeLucro.NoticiasScraper.Interfaces.Source;
 import com.SinAnimoDeLucro.NoticiasScraper.Repositories.NewspaperRepository;
+import com.SinAnimoDeLucro.NoticiasScraper.Services.Interfaces.INewspaperService;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class NewsPaperServiceImpl implements INewspaperService {

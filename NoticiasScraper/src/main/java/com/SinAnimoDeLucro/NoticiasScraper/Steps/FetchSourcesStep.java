@@ -1,6 +1,6 @@
 package com.SinAnimoDeLucro.NoticiasScraper.Steps;
 
-import com.SinAnimoDeLucro.NoticiasScraper.Services.NewsPaperServiceImpl;
+import com.SinAnimoDeLucro.NoticiasScraper.Services.Implementacion.NewsPaperServiceImpl;
 import org.jspecify.annotations.Nullable;
 import org.springframework.batch.core.scope.context.ChunkContext;
 import org.springframework.batch.core.step.StepContribution;

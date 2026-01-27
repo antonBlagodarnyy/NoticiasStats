@@ -19,6 +19,7 @@ CREATE TABLE `articles`
     newspaper_id INT NOT NULL,
     headline TEXT NOT NULL,
     url VARCHAR(255) NOT NULL UNIQUE,
+    category VARCHAR(255) NOT NULL,
     published_at DATE NOT NULL,
     PRIMARY KEY (id),
     CONSTRAINT fk_article_newspaper
