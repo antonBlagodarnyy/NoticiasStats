@@ -57,7 +57,7 @@ public class RtveScraper implements Scraper {
           Element category = newsDoc.selectFirst("span.pretitle");
           Element publicationDate = newsDoc.selectFirst("span.datpub");
 
-          if (publicationDate == null || category == null || category.text().isEmpty() || headline == null) {
+          if (publicationDate == null || category == null || headline == null) {
             log.debug("[RtveScraper] -> Noticia incompleta, se ignora: {}", urlNews);
             continue;
           }

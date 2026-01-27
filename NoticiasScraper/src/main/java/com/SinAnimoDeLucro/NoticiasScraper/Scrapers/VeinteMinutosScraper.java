@@ -56,7 +56,7 @@ public class VeinteMinutosScraper implements Scraper {
           Element category = newsDoc.selectFirst("div.c-detail__category");
           Element publicationDate = newsDoc.selectFirst("span.c-detail__date");
 
-          if (publicationDate == null ||category == null || category.text().isEmpty() || headline == null) {
+          if (publicationDate == null ||category == null || headline == null) {
             log.debug("[VeinteMinutosScraper] -> Noticia incompleta, se ignora: {}", urlNews);
             continue;
           }
