@@ -13,7 +13,7 @@ Estadístcas de noticieros españoles sin animo de lucro.
 
 ## Tecnologías
 
-- Mysql/Postgresql.
+- Mysql.
 - Springboot.
 - Angular.
 
