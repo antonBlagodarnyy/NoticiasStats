@@ -2,16 +2,25 @@ import { Component, input } from '@angular/core';
 import { Article } from '../../Model/Article';
 import { MatCardModule } from '@angular/material/card';
 import { DatePipe } from '@angular/common';
+import { MatChipsModule } from '@angular/material/chips';
 
 @Component({
   selector: 'app-article-component',
-  imports: [MatCardModule, DatePipe],
+  imports: [MatCardModule, DatePipe, MatChipsModule],
   template: `<mat-card
     ><mat-card-header
-      ><a href="{{ article().url }}">{{ article().headline }}</a></mat-card-header
+      ><mat-card-title>{{ article().newspaper }}</mat-card-title></mat-card-header
     >
-    <mat-card-footer>{{article().publishedAt | date}}</mat-card-footer></mat-card
-  >`,
+    <mat-card-content
+      ><a href="{{ article().url }}">{{ article().headline }}</a></mat-card-content
+    >
+    <mat-card-footer>
+      <mat-chip-set>
+        <mat-chip>{{ article().category }}</mat-chip>
+        <mat-chip>{{ article().publishedAt | date }}</mat-chip>
+      </mat-chip-set></mat-card-footer
+    >
+  </mat-card>`,
   styleUrl: './article-component.scss',
 })
 export class ArticleComponent {

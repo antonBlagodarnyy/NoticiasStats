@@ -1,0 +1,16 @@
+a {
+  color: #000;
+  text-decoration: none;
+}
+mat-card{
+    height: 100%;
+    display: flex;
+  flex-direction: column;
+}
+mat-card-content {
+
+  flex: 1 1 auto;
+}
+mat-card-footer{
+      margin-left: 0.5rem;
+}

@@ -15,7 +15,7 @@ export class ArticleService {
   constructor() {}
 
   getArticles$() {
-    const params = new HttpParams().set('date', '2026-01-21');
+    const params = new HttpParams().set('date', '2026-01-28');
     return this.httpClient
       .get<{ articles: Article[] }>(environment.apiUrl + '/article/byDate', { params })
       .pipe(
