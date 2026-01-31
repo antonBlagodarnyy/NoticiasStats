@@ -30,22 +30,18 @@ Estadístcas de noticieros españoles sin animo de lucro.
 ## Estadísticas
 
 - Número de noticias por día / semana / mes diferenciadas por noticiero.
-
+- Clasificar todas las noticias por categoría.
 
 ## v1.1.0-next
 
 ### Añadidas estadísticas
 
-- Países mas nombrados. 
-- Clasificar todas las noticias por categoría.
+- Países mas nombrados.
 
 ### Mejoras de código
 
 - Cambio List por Set para evitar filtro de noticias repetidas.
 - Evita links con 404.
-
-### Mejoras generales
-
 - Limite de solicitudes en la api.
 
 ## v1.0.0-next

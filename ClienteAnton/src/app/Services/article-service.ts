@@ -15,13 +15,13 @@ export class ArticleService {
   constructor() {}
 
   getArticles$() {
-    const params = new HttpParams().set('date', '2026-01-28');
+    const params = new HttpParams().set('date', '2026-01-29');
     return this.httpClient
       .get<{ articles: Article[] }>(environment.apiUrl + '/article/byDate', { params })
       .pipe(
         tap((res) => {
           console.log(res);
-          this.articles.next(res.articles);
+          this.articles.next(res.articles.slice(0,15));
         }),
       );
   }

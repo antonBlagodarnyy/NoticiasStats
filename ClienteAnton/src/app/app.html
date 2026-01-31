@@ -1,3 +1,45 @@
-<h1>NoticiasStats</h1>
+<a [routerLink]="['/inicio']" ><h1>NoticiasStats</h1></a>
 
-<router-outlet />
+<nav mat-tab-nav-bar [tabPanel]="tabPanel">
+  <a
+    mat-tab-link
+    [routerLink]="['/noticias']"
+    routerLinkActive
+    #rlaNoticias="routerLinkActive"
+    [active]="rlaNoticias.isActive"
+    >Noticias</a
+  >
+  <a
+    mat-tab-link
+    [routerLink]="['/estadisticas']"
+    routerLinkActive
+    #rlaEstadisticas="routerLinkActive"
+    [active]="rlaEstadisticas.isActive"
+    >Estadisticas</a
+  >
+</nav>
+<mat-tab-nav-panel #tabPanel>
+  <router-outlet />
+</mat-tab-nav-panel>
+
+<hr />
+<!--TODO cambiar links-->
+<footer>
+  <span>Desarrollado por Anton y Donato</span>
+  <div class="container-social">
+    <span
+      ><a href=""><img class="social-icon" src="/assets/linkedin.png" /></a> Anton</span
+    >
+    <span
+      ><a href=""><img class="social-icon" src="/assets/linkedin.png" /></a> Donato</span
+    >
+  </div>
+  <div class="container-social">
+    <span
+      ><a href=""><img class="social-icon" src="/assets/github.png" /></a> Anton</span
+    >
+    <span
+      ><a href=""><img class="social-icon" src="/assets/github.png" /></a> Donato</span
+    >
+  </div>
+</footer>
