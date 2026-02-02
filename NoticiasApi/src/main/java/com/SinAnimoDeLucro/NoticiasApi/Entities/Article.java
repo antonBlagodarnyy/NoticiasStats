@@ -1,5 +1,6 @@
 package com.SinAnimoDeLucro.NoticiasApi.Entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
@@ -25,6 +26,7 @@ public class Article {
 
     @ManyToOne
     @JoinColumn(name = "newspaper_id", nullable = false)
+    @JsonIgnore
     private Newspaper newspaper;
 
     public Article() {

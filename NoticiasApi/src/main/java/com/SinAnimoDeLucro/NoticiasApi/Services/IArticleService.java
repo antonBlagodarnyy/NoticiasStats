@@ -1,12 +1,17 @@
 package com.SinAnimoDeLucro.NoticiasApi.Services;
 
-import com.SinAnimoDeLucro.NoticiasApi.Dto.ArticleDTO;
-import com.SinAnimoDeLucro.NoticiasApi.Dto.GetArticlesByDateRes;
 import com.SinAnimoDeLucro.NoticiasApi.Entities.Article;
+import org.springframework.data.domain.Page;
 
 import java.time.LocalDate;
 
 public interface IArticleService {
-    GetArticlesByDateRes getArticlesByDate(LocalDate date);
-    ArticleDTO mapToDto(Article a);
+    Page<Article> getArticlesInRange(
+            LocalDate start,
+            LocalDate end,
+            int page,
+            int size,
+            String newspaperName
+    );
+
 }

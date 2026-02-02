@@ -1,10 +1,12 @@
 package com.SinAnimoDeLucro.NoticiasApi.Services;
 
-import com.SinAnimoDeLucro.NoticiasApi.Dto.ArticleDTO;
-import com.SinAnimoDeLucro.NoticiasApi.Dto.GetArticlesByDateRes;
 import com.SinAnimoDeLucro.NoticiasApi.Entities.Article;
 import com.SinAnimoDeLucro.NoticiasApi.Repositories.ArticleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -14,17 +16,21 @@ public class ArticleServiceImpl implements IArticleService {
     @Autowired
     private ArticleRepository articleRepository;
 
-    @Override
-    public GetArticlesByDateRes getArticlesByDate(LocalDate date) {
-        return new GetArticlesByDateRes(
-                articleRepository.findArticleByPublishedAt(date)
-                        .stream()
-                        .map(this::mapToDto)
-                        .toList());
-    }
-
-    @Override
-    public ArticleDTO mapToDto(Article a) {
-        return new ArticleDTO(a.getHeadline(), a.getNewspaper().getName(), a.getUrl(), a.getCategory(), a.getPublishedAt());
+    public Page<Article> getArticlesInRange(
+            LocalDate start,
+            LocalDate end,
+            int page,
+            int size,
+            String newspaperName
+    ) {
+        Pageable pageable = PageRequest.of(
+                page,
+                size,
+                Sort.by("publishedAt").descending());
+        return articleRepository.findByPublishedAtBetweenAndNewspaper_Name(
+                start,
+                end,
+                newspaperName,
+                pageable);
     }
 }
