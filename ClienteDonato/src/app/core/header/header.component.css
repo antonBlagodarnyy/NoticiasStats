@@ -1,0 +1,14 @@
+.container-header {
+  text-align: center;
+  padding: 25px 0 10px 0;
+  background-color: #1e293b;
+}
+
+.header {
+  font-weight: 500;
+  color: #ffffff;
+}
+
+.content {
+  margin-left: 5px;
+}

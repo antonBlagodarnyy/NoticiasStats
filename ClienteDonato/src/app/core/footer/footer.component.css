@@ -1,0 +1,33 @@
+.footer-container {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 60px 10px 20px;
+  background-color: #1e293b;
+  color: #ffffff;
+}
+
+.first-container {
+  align-self: center;
+  font-size: 16px;
+}
+
+.second-container {
+  display: flex;
+  gap: 5em;
+}
+
+.contact-link {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: #ffffff;
+  margin: 1em 0 1em 0;
+}
+
+.contact-link:hover {
+  color: #cbd5e1;
+}
+
+.contact {
+  margin-left: 10px;
+}

@@ -1,0 +1,16 @@
+<mat-card class="example-card">
+  <mat-card-header>
+    <mat-card-title>RTVE</mat-card-title>
+  </mat-card-header>
+    <mat-card-content>
+      <p>
+        <a href={{article.url}} id="card-content" target="_blank">
+          {{article.headline}}
+        </a>
+      </p>
+    </mat-card-content>
+    <mat-card-actions>
+      <p class="card-actions">{{article.category}}</p>
+      <p class="card-actions">{{article.publishedAt | date}}</p>
+    </mat-card-actions>
+  </mat-card>
