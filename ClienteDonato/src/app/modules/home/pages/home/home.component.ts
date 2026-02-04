@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
+import { debounceTime } from 'rxjs';
 import { ArticlesService } from 'src/app/core/services/articles.service';
-import { IArticle } from 'src/app/shared/models/Article';
+import { IArticle } from 'src/app/shared/models/IArticle';
 import { INewspaper } from 'src/app/shared/models/INewspaper';
 
 @Component({
@@ -14,11 +15,11 @@ export class HomeComponent implements OnInit {
     start: new FormControl<Date | null>(null),
     end: new FormControl<Date | null>(null),
   });
-
-  constructor(private service: ArticlesService) { }
-
   articles: IArticle[] = [];
   newspapers: INewspaper[] = [];
+  newspaperControl = new FormControl<number | null>(null);
+
+  constructor(private service: ArticlesService) { }
 
   ngOnInit(): void {
     this.service.findAllNewsToday().subscribe(articles => {
@@ -27,6 +28,34 @@ export class HomeComponent implements OnInit {
 
     this.service.findAllNewspaper().subscribe(newspapers => {
       this.newspapers = newspapers;
+    });
+
+    this.newspaperControl.valueChanges
+      .pipe(debounceTime(300))
+      .subscribe(() => {
+        this.applyFilters();
+      });
+
+    this.range.valueChanges
+      .pipe(debounceTime(300))
+      .subscribe(() => {
+        this.applyFilters();
+      });
+  }
+
+  applyFilters(): void {
+    const newspaperId = this.newspaperControl.value ? Number(this.newspaperControl.value) : null;
+    const startDate = this.range.value.start ? this.range.value.start.toISOString().slice(0, 10) : new Date().toISOString().slice(0, 10);
+    const endDate = this.range.value.end ? this.range.value.end.toISOString().slice(0, 10) : new Date().toISOString().slice(0, 10);
+
+    this.service.findNewsByNewspaperIdAndDate(newspaperId, startDate, endDate)
+      .subscribe(articles => {
+        this.articles = articles;
+      });
+    console.log({
+      newspaperId,
+      startDate,
+      endDate
     });
   }
 }

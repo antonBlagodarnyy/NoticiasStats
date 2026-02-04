@@ -1,11 +1,26 @@
 package com.SinAnimoDeLucro.NoticiasApi.Repositories;
 
+import com.SinAnimoDeLucro.NoticiasApi.Dto.ArticleDTO;
 import com.SinAnimoDeLucro.NoticiasApi.Entities.Article;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import java.time.LocalDate;
 import java.util.List;
 
 public interface ArticleRepository extends JpaRepository<Article, Integer> {
     List<Article> findArticleByPublishedAt(LocalDate publishedAt);
+
+    @Query("SELECT new com.SinAnimoDeLucro.NoticiasApi.Dto.ArticleDTO(" +
+      "a.headline, a.url, a.category, a.publishedAt, a.newspaper.name) " +
+      "FROM Article a " +
+      "WHERE (:newspaperId IS NULL OR a.newspaper.id = :newspaperId) " +
+      "AND a.publishedAt BETWEEN :start AND :end " +
+      "ORDER BY a.publishedAt DESC")
+    List<ArticleDTO> findByNewspaperAndDate(
+      @Param("newspaperId") Integer newspaperId,
+      @Param("start") LocalDate start,
+      @Param("end") LocalDate end
+    );
 }

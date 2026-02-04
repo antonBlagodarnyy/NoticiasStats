@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { IArticle } from 'src/app/shared/models/Article';
+import { IArticle } from 'src/app/shared/models/IArticle';
 
 @Component({
   selector: 'app-article-card',
@@ -13,7 +13,8 @@ export class ArticleCardComponent implements OnInit {
     headline: '',
     url: '',
     category: '',
-    publishedAt: new Date()
+    publishedAt: new Date(),
+    newspaperName: ''
   }
 
   constructor() { }
