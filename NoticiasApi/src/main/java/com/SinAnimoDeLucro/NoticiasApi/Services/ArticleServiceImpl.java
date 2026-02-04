@@ -6,6 +6,7 @@ import com.SinAnimoDeLucro.NoticiasApi.Entities.Article;
 import com.SinAnimoDeLucro.NoticiasApi.Repositories.ArticleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 
@@ -14,6 +15,7 @@ public class ArticleServiceImpl implements IArticleService {
   @Autowired
   private ArticleRepository articleRepository;
 
+  @Transactional(readOnly = true)
   @Override
   public GetArticlesRes getArticlesByDate(LocalDate date) {
     return new GetArticlesRes(
@@ -23,6 +25,7 @@ public class ArticleServiceImpl implements IArticleService {
         .toList());
   }
 
+  @Transactional(readOnly = true)
   @Override
   public GetArticlesRes getArticlesByNewspaperIdAndDate(Integer newspaperId, LocalDate startDate, LocalDate endDate) {
     return new GetArticlesRes(
