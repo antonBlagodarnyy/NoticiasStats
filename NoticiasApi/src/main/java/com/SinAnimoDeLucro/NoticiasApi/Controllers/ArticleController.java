@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.time.LocalDate;
 
 @Controller
-@RequestMapping(path = "/article")
+@RequestMapping(path = "/api/article")
 @RestController
 public class ArticleController {
     @Autowired
