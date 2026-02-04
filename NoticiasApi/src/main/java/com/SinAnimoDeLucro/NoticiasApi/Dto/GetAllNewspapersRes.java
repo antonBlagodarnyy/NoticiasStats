@@ -2,5 +2,5 @@ package com.SinAnimoDeLucro.NoticiasApi.Dto;
 
 import java.util.List;
 
-public record GetAllNewspapers(List<NewspaperDTO> newspapers) {
+public record GetAllNewspapersRes(List<NewspaperDTO> newspapers) {
 }
