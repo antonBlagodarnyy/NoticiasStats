@@ -52,10 +52,5 @@ export class HomeComponent implements OnInit {
       .subscribe(articles => {
         this.articles = articles;
       });
-    console.log({
-      newspaperId,
-      startDate,
-      endDate
-    });
   }
 }
