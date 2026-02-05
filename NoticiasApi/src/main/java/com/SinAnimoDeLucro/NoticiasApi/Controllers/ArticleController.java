@@ -1,8 +1,12 @@
 package com.SinAnimoDeLucro.NoticiasApi.Controllers;
 
+import com.SinAnimoDeLucro.NoticiasApi.Dto.ArticleDTO;
 import com.SinAnimoDeLucro.NoticiasApi.Dto.GetArticlesRes;
+import com.SinAnimoDeLucro.NoticiasApi.Dto.PaginatedArticlesRes;
 import com.SinAnimoDeLucro.NoticiasApi.Services.ArticleServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -35,17 +39,21 @@ public class ArticleController {
     }
 
     @GetMapping("by-newspaperid-and-date")
-    public ResponseEntity<?> getArticlesByCategoryAndDate(@RequestParam(required = false) Integer newspaperId,
-                                                          @RequestParam("startDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate startDate,
-                                                          @RequestParam("endDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate endDate
+    public ResponseEntity<PaginatedArticlesRes> getArticlesByCategoryAndDate(@RequestParam(required = false) Integer newspaperId,
+                                                                             @RequestParam("startDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate startDate,
+                                                                             @RequestParam("endDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate endDate,
+                                                                             @RequestParam(defaultValue = "0") int page,
+                                                                             @RequestParam(defaultValue = "15") int size
                                                           ) {
 
-        GetArticlesRes res = articleService.getArticlesByNewspaperIdAndDate(newspaperId, startDate, endDate );
+        Page<ArticleDTO> res = articleService.getArticlesByFilters(newspaperId, startDate, endDate, page, size );
 
-        if(res.articles().isEmpty()) {
-            return ResponseEntity.notFound().build();
-        }
-
-        return ResponseEntity.ok(res);
+        return ResponseEntity.ok(new PaginatedArticlesRes(
+          res.getContent(),
+          res.getNumber(),
+          res.getSize(),
+          res.getTotalElements(),
+          res.getTotalPages()
+        ));
     }
 }

@@ -5,6 +5,10 @@ import com.SinAnimoDeLucro.NoticiasApi.Dto.GetArticlesRes;
 import com.SinAnimoDeLucro.NoticiasApi.Entities.Article;
 import com.SinAnimoDeLucro.NoticiasApi.Repositories.ArticleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -27,9 +31,9 @@ public class ArticleServiceImpl implements IArticleService {
 
   @Transactional(readOnly = true)
   @Override
-  public GetArticlesRes getArticlesByNewspaperIdAndDate(Integer newspaperId, LocalDate startDate, LocalDate endDate) {
-    return new GetArticlesRes(
-      articleRepository.findByNewspaperAndDate(newspaperId, startDate, endDate));
+  public Page<ArticleDTO> getArticlesByFilters(Integer newspaperId, LocalDate startDate, LocalDate endDate, int page, int size) {
+    Pageable pageable = PageRequest.of(page, size, Sort.by(Sort.Direction.DESC, "publishedAt"));
+    return articleRepository.findByNewspaperIdAndDate(newspaperId, startDate, endDate, pageable);
   }
 
   @Override

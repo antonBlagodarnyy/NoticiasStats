@@ -2,6 +2,8 @@ package com.SinAnimoDeLucro.NoticiasApi.Repositories;
 
 import com.SinAnimoDeLucro.NoticiasApi.Dto.ArticleDTO;
 import com.SinAnimoDeLucro.NoticiasApi.Entities.Article;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -18,9 +20,10 @@ public interface ArticleRepository extends JpaRepository<Article, Integer> {
       "WHERE (:newspaperId IS NULL OR a.newspaper.id = :newspaperId) " +
       "AND a.publishedAt BETWEEN :start AND :end " +
       "ORDER BY a.publishedAt DESC")
-    List<ArticleDTO> findByNewspaperAndDate(
+    Page<ArticleDTO> findByNewspaperIdAndDate(
       @Param("newspaperId") Integer newspaperId,
       @Param("start") LocalDate start,
-      @Param("end") LocalDate end
+      @Param("end") LocalDate end,
+      Pageable pageable
     );
 }
