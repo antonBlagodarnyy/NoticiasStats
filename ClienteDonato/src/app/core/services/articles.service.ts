@@ -31,17 +31,18 @@ export class ArticlesService {
       map(response => response.newspapers));
   }
 
-  findNewsByNewspaperIdAndDate(newspaperId: number | null, startDate: string, endDate: string): Observable<IArticle[]> {
+  findNewsByNewspaperIdAndDate(newspaperId: number | null, startDate: string, endDate: string, page: number, size: number){
     const params: any = {
       startDate,
-      endDate
+      endDate,
+      page,
+      size
     };
 
     if (newspaperId !== null) {
       params.newspaperId = newspaperId;
     }
 
-    return this.httpClient.get<IArticlesResponse>(this.url + "articles/by-newspaperid-and-date", { params })
-      .pipe(map(res => res.articles));
+    return this.httpClient.get<IArticlesResponse>(this.url + "articles/by-newspaperid-and-date", { params });
   }
 }

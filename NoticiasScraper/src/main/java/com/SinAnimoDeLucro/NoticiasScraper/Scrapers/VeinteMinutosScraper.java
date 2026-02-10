@@ -41,9 +41,10 @@ public class VeinteMinutosScraper implements Scraper {
       Elements newsItems = doc.select("article");
       for (Element newsItem : newsItems) {
         Element urlNewsEl = newsItem.selectFirst("a");
-
         if(urlNewsEl == null) continue;
+
         String urlNews = urlNewsEl.attr("abs:href");
+        if(urlNews.isBlank()) continue;
 
         if (articleService.existsByUrl(urlNews)) {
           log.debug("[VeinteMinutosScraper] -> Noticia duplicada, se ignora: {}", urlNews);
