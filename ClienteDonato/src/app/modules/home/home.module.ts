@@ -14,13 +14,17 @@ import { ArticleCardComponent } from './components/article-card/article-card.com
 import {MatCardModule} from  '@angular/material/card';
 import { PaginatorComponent } from './components/paginator/paginator.component' ;
 import {MatPaginatorModule} from '@angular/material/paginator';
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { StatsCardComponent } from './components/stats-card/stats-card.component';
 
 
 @NgModule({
   declarations: [
     HomeComponent,
     ArticleCardComponent,
-    PaginatorComponent
+    PaginatorComponent,
+    DashboardComponent,
+    StatsCardComponent
   ],
   imports: [
     CommonModule,
@@ -38,6 +42,7 @@ import {MatPaginatorModule} from '@angular/material/paginator';
   ],
   exports: [
     HomeComponent,
+    DashboardComponent
   ]
 })
 export class HomeModule { }

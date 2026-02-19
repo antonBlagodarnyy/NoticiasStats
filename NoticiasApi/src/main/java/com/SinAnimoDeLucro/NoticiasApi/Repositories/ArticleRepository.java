@@ -9,10 +9,9 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import java.time.LocalDate;
-import java.util.List;
 
 public interface ArticleRepository extends JpaRepository<Article, Integer> {
-    List<Article> findArticleByPublishedAt(LocalDate publishedAt);
+    Page<ArticleDTO> findArticleByPublishedAt(LocalDate publishedAt, Pageable pageable);
 
     @Query("SELECT new com.SinAnimoDeLucro.NoticiasApi.Dto.ArticleDTO(" +
       "a.headline, a.url, a.category, a.publishedAt, a.newspaper.name) " +
@@ -26,4 +25,7 @@ public interface ArticleRepository extends JpaRepository<Article, Integer> {
       @Param("end") LocalDate end,
       Pageable pageable
     );
+
+    long countByPublishedAt(LocalDate publishedAt);
+    long countByPublishedAtBetween(LocalDate start, LocalDate end);
 }

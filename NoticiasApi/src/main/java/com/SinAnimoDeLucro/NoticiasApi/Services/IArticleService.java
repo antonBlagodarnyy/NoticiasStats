@@ -8,7 +8,8 @@ import org.springframework.data.domain.Page;
 import java.time.LocalDate;
 
 public interface IArticleService {
-    GetArticlesRes getArticlesByDate(LocalDate date);
-    ArticleDTO mapToDto(Article a);
+    Page<ArticleDTO> getArticlesByDate(LocalDate date, int page, int size);
     Page<ArticleDTO> getArticlesByFilters(Integer newspaperId, LocalDate startDate, LocalDate endDate, int page, int size);
+    long countArticlesByDate(LocalDate date);
+    long countArticlesByDateRange(LocalDate startDate, LocalDate endDate);
 }

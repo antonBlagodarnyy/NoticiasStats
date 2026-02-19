@@ -6,6 +6,7 @@ import { FooterComponent } from './footer/footer.component';
 import { MatTabsModule } from '@angular/material/tabs';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import { HomeModule } from '../modules/home/home.module';
+import { DashboardComponent } from '../modules/home/pages/dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,7 @@ import { HomeModule } from '../modules/home/home.module';
     MatIconModule,
     MatTabsModule,
     MatToolbarModule,
-    HomeModule
+    HomeModule,
   ],
   exports: [
     HeaderComponent,

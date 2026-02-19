@@ -1,8 +1,6 @@
 package com.SinAnimoDeLucro.NoticiasApi.Services;
 
 import com.SinAnimoDeLucro.NoticiasApi.Dto.ArticleDTO;
-import com.SinAnimoDeLucro.NoticiasApi.Dto.GetArticlesRes;
-import com.SinAnimoDeLucro.NoticiasApi.Entities.Article;
 import com.SinAnimoDeLucro.NoticiasApi.Repositories.ArticleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -21,12 +19,9 @@ public class ArticleServiceImpl implements IArticleService {
 
   @Transactional(readOnly = true)
   @Override
-  public GetArticlesRes getArticlesByDate(LocalDate date) {
-    return new GetArticlesRes(
-      articleRepository.findArticleByPublishedAt(date)
-        .stream()
-        .map(this::mapToDto)
-        .toList());
+  public Page<ArticleDTO> getArticlesByDate(LocalDate date, int page, int size) {
+    Pageable pageable = PageRequest.of(page, size);
+    return articleRepository.findArticleByPublishedAt(date, pageable);
   }
 
   @Transactional(readOnly = true)
@@ -37,7 +32,12 @@ public class ArticleServiceImpl implements IArticleService {
   }
 
   @Override
-  public ArticleDTO mapToDto(Article a) {
-    return new ArticleDTO(a.getHeadline(), a.getUrl(), a.getCategory(), a.getPublishedAt(), a.getNewspaper().getName());
+  public long countArticlesByDate(LocalDate date) {
+    return articleRepository.countByPublishedAt(date);
+  }
+
+  @Override
+  public long countArticlesByDateRange(LocalDate startDate, LocalDate endDate) {
+    return articleRepository.countByPublishedAtBetween(startDate, endDate);
   }
 }
