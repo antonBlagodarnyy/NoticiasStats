@@ -1,0 +1,10 @@
+.dashboard-title{
+  text-align: center;
+  margin-top: 20px;
+}
+
+.container-content {
+  display: flex;
+  justify-content:space-between;
+  padding: 30px;
+}

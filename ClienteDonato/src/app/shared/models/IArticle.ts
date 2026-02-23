@@ -3,4 +3,5 @@ export interface IArticle {
   url: string
   category: string
   publishedAt: Date
+  newspaperName: string
 }

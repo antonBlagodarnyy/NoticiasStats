@@ -14,7 +14,7 @@
     <div>
       <mat-form-field>
         <mat-label>Noticiero</mat-label>
-        <mat-select>
+        <mat-select [formControl]="newspaperControl">
           <mat-option *ngFor="let newspaper of newspapers" [value]="newspaper.id">
             {{newspaper.name}}
           </mat-option>
@@ -29,7 +29,6 @@
           <input matStartDate formControlName="start" placeholder="Fecha de inicio">
           <input matEndDate formControlName="end" placeholder="Fecha de fin">
         </mat-date-range-input>
-        <!-- <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint> -->
         <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-date-range-picker #picker></mat-date-range-picker>
 
@@ -41,5 +40,9 @@
 
   <div class="second-container">
     <app-article-card *ngFor="let article of articles" [article-card]="article"></app-article-card>
+  </div>
+
+  <div class="third-container">
+    <app-paginator [page]="page" [size]="size" [totElements] = "totElements" (pageChange)="onPageChange($event)"></app-paginator>
   </div>
 </div>

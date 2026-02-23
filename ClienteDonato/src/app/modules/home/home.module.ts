@@ -11,12 +11,20 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatButtonModule} from '@angular/material/button';
 import { ArticleCardComponent } from './components/article-card/article-card.component';
-import {MatCardModule} from  '@angular/material/card' ;
+import {MatCardModule} from  '@angular/material/card';
+import { PaginatorComponent } from './components/paginator/paginator.component' ;
+import {MatPaginatorModule} from '@angular/material/paginator';
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { StatsCardComponent } from './components/stats-card/stats-card.component';
+
 
 @NgModule({
   declarations: [
     HomeComponent,
-    ArticleCardComponent
+    ArticleCardComponent,
+    PaginatorComponent,
+    DashboardComponent,
+    StatsCardComponent
   ],
   imports: [
     CommonModule,
@@ -29,10 +37,12 @@ import {MatCardModule} from  '@angular/material/card' ;
     MatIconModule,
     MatDividerModule,
     MatButtonModule,
-    MatCardModule
+    MatCardModule,
+    MatPaginatorModule
   ],
   exports: [
     HomeComponent,
+    DashboardComponent
   ]
 })
 export class HomeModule { }
