@@ -1,5 +1,6 @@
 package com.SinAnimoDeLucro.NoticiasApi.Controllers;
 
+import com.SinAnimoDeLucro.NoticiasApi.Dto.ArticleDTO;
 import com.SinAnimoDeLucro.NoticiasApi.Entities.Article;
 import com.SinAnimoDeLucro.NoticiasApi.Services.ArticleServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +21,7 @@ public class ArticleController {
     private ArticleServiceImpl articleService;
 
     @GetMapping("/filter")
-    public Page<Article> getArticlesByDateRange(
+    public Page<ArticleDTO> getArticlesByDateRange(
             @RequestParam String start,
             @RequestParam String end,
             @RequestParam(defaultValue = "0") int page,

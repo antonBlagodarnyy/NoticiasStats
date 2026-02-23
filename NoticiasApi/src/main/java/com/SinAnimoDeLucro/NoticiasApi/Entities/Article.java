@@ -1,6 +1,7 @@
 package com.SinAnimoDeLucro.NoticiasApi.Entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
@@ -28,6 +29,11 @@ public class Article {
     @JoinColumn(name = "newspaper_id", nullable = false)
     @JsonIgnore
     private Newspaper newspaper;
+
+    @JsonProperty("newspaperName")
+    public String getNewspaperName() {
+        return newspaper != null ? newspaper.getName() : null;
+    }
 
     public Article() {
     }

@@ -1,5 +1,6 @@
 package com.SinAnimoDeLucro.NoticiasApi.Services;
 
+import com.SinAnimoDeLucro.NoticiasApi.Dto.ArticleDTO;
 import com.SinAnimoDeLucro.NoticiasApi.Entities.Article;
 import com.SinAnimoDeLucro.NoticiasApi.Repositories.ArticleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +17,7 @@ public class ArticleServiceImpl implements IArticleService {
     @Autowired
     private ArticleRepository articleRepository;
 
-    public Page<Article> getArticlesInRange(
+    public Page<ArticleDTO> getArticlesInRange(
             LocalDate start,
             LocalDate end,
             int page,
@@ -31,6 +32,17 @@ public class ArticleServiceImpl implements IArticleService {
                 start,
                 end,
                 newspaperName,
-                pageable);
+                pageable)
+                .map(this::mapToDTO);
+    }
+
+    private ArticleDTO mapToDTO(Article a) {
+        return new ArticleDTO(
+                a.getHeadline(),
+                a.getNewspaper().getName(),
+                a.getUrl(),
+                a.getCategory(),
+                a.getPublishedAt()
+        );
     }
 }

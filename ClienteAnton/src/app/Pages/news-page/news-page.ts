@@ -1,10 +1,10 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { ArticleService } from '../../Services/article-service';
 import { ArticleComponent } from '../../Components/article-component/article-component';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { ArticleFilters } from "../../Components/article-filters/article-filters";
 import { ArticlePaginator } from "../../Components/article-paginator/article-paginator";
+import { ArticleStore } from '../../Stores/article.store';
 
 @Component({
   selector: 'app-news-page',
@@ -26,10 +26,8 @@ import { ArticlePaginator } from "../../Components/article-paginator/article-pag
   `,
   styleUrl: './news-page.scss',
 })
-export class NewsPage implements OnInit {
-  private articleService = inject(ArticleService);
-  articles = toSignal(this.articleService.articlesSubject$, { initialValue: [] });
-  ngOnInit(): void {
-    this.articleService.getArticles$().subscribe();
-  }
+export class NewsPage  {
+  private articleStore = inject(ArticleStore);
+  articles = toSignal(this.articleStore.articles);
+
 }
