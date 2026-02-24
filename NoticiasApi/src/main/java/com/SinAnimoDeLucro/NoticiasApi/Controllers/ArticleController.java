@@ -2,6 +2,7 @@ package com.SinAnimoDeLucro.NoticiasApi.Controllers;
 
 import com.SinAnimoDeLucro.NoticiasApi.Dto.ArticleDTO;
 import com.SinAnimoDeLucro.NoticiasApi.Dto.PaginatedArticlesRes;
+import com.SinAnimoDeLucro.NoticiasApi.Dto.TopNewspaperResponse;
 import com.SinAnimoDeLucro.NoticiasApi.Enums.Period;
 import com.SinAnimoDeLucro.NoticiasApi.Services.ArticleServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Controller
 @RequestMapping(path = "/api/articles")
@@ -59,25 +61,21 @@ public class ArticleController {
     ));
   }
 
-  @GetMapping("/total-news")
+  @GetMapping("/count-by-period")
   public ResponseEntity<Long> getTotalNewsLastWeek(@RequestParam Period period) {
-    LocalDate today = LocalDate.now();
-    LocalDate startDate;
-
-    switch (period) {
-      case TODAY:
-        return ResponseEntity.ok(articleService.countArticlesByDate(today));
-      case LAST_WEEK:
-        startDate = today.minusDays(7);
-        break;
-      case LAST_MONTH:
-        startDate = today.minusMonths(1);
-        break;
-      default:
-        return ResponseEntity.notFound().build();
-    }
-    long totNews = articleService.countArticlesByDateRange(startDate, today);
+    long totNews = articleService.countArticlesByPeriod(period);
 
     return ResponseEntity.ok(totNews);
+  }
+
+  @GetMapping("/top-newspaper")
+  public ResponseEntity<TopNewspaperResponse> getTopNewspaperByDate(@RequestParam Period period) {
+    String topNewspaper = articleService.getTopNewspaperByPeriod(period);
+
+    if(topNewspaper.isEmpty()){
+      return ResponseEntity.noContent().build();
+    }
+
+    return ResponseEntity.ok(new TopNewspaperResponse(topNewspaper));
   }
 }

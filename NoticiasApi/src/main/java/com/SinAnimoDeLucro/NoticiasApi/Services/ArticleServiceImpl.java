@@ -1,8 +1,10 @@
 package com.SinAnimoDeLucro.NoticiasApi.Services;
 
 import com.SinAnimoDeLucro.NoticiasApi.Dto.ArticleDTO;
+import com.SinAnimoDeLucro.NoticiasApi.Enums.Period;
 import com.SinAnimoDeLucro.NoticiasApi.Repositories.ArticleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cglib.core.Local;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -11,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Service
 public class ArticleServiceImpl implements IArticleService {
@@ -31,13 +34,29 @@ public class ArticleServiceImpl implements IArticleService {
     return articleRepository.findByNewspaperIdAndDate(newspaperId, startDate, endDate, pageable);
   }
 
+  @Transactional(readOnly = true)
   @Override
-  public long countArticlesByDate(LocalDate date) {
-    return articleRepository.countByPublishedAt(date);
+  public long countArticlesByPeriod(Period period) {
+    LocalDate today = LocalDate.now();
+    LocalDate startDate = period.getStart(today);
+
+    if (period == Period.TODAY) {
+      return articleRepository.countByPublishedAt(today);
+    }
+
+    return articleRepository.countByPublishedAtBetween(startDate, today);
   }
 
+  @Transactional(readOnly = true)
   @Override
-  public long countArticlesByDateRange(LocalDate startDate, LocalDate endDate) {
-    return articleRepository.countByPublishedAtBetween(startDate, endDate);
+  public String getTopNewspaperByPeriod(Period period) {
+    LocalDate today = LocalDate.now();
+    LocalDate startDate = period.getStart(today);
+
+    if (period == Period.TODAY) {
+      return articleRepository.findTopNewspaperByDate(today);
+    }
+
+    return articleRepository.findTopNewspaperByDateRange(startDate, today);
   }
 }

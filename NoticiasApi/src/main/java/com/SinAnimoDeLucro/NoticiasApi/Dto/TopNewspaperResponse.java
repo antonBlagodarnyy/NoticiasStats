@@ -1,4 +1,4 @@
 package com.SinAnimoDeLucro.NoticiasApi.Dto;
 
-public class TopNewspaperResponse {
+public record TopNewspaperResponse(String name) {
 }
