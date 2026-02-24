@@ -1,1 +1,6 @@
-<p>stats-card works!</p>
+<mat-card class="stat-card">
+  <mat-card-content class="stat-content" *ngFor="let item of items">
+    <div class="stat-label">{{item.title}}</div>
+    <div class="stat-value">{{ item.value }}</div>
+  </mat-card-content>
+</mat-card>
