@@ -48,24 +48,6 @@ public class ArticleServiceImpl implements IArticleService {
         );
     }
 
-  @Transactional(readOnly = true)
-  @Override
-  public Page<ArticleDTO> getArticlesByDate(LocalDate date, int page, int size) {
-    Pageable pageable = PageRequest.of(page, size);
-    return articleRepository.findArticleByPublishedAt(date, pageable);
-  }
-
-  @Transactional(readOnly = true)
-  @Override
-  public Page<ArticleDTO> getArticlesByFilters(Integer newspaperId, LocalDate startDate, LocalDate endDate, int page, int size) {
-    Pageable pageable = PageRequest.of(page, size, Sort.by(Sort.Direction.DESC, "publishedAt"));
-    return articleRepository.findByNewspaperIdAndDate(newspaperId, startDate, endDate, pageable);
-  }
-
-  @Override
-  public long countArticlesByDate(LocalDate date) {
-    return articleRepository.countByPublishedAt(date);
-  }
 
   @Override
   public long countArticlesByDateRange(LocalDate startDate, LocalDate endDate) {
