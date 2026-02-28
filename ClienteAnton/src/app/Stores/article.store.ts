@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, combineLatest, filter, switchMap } from 'rxjs';
-import { Article, ArticleApiService, Page } from '../Services/article-api.service';
+import { Article, ArticleApiService, Newspaper, Page } from '../Services/article-api.service';
 
 @Injectable({ providedIn: 'root' })
 export class ArticleStore {
-  private newspapers$ = new BehaviorSubject<string[]>([]);
+  private newspapers$ = new BehaviorSubject<Newspaper[]>([]);
   private keyword$ = new BehaviorSubject('');
-  private newspaper$ = new BehaviorSubject('');
+  private newspaper$ = new BehaviorSubject<Newspaper | undefined>(undefined);
   private dateRange$ = new BehaviorSubject<[string, string]>([
     this.defaultStart(),
     this.defaultEnd(),
@@ -38,9 +38,9 @@ export class ArticleStore {
     this.keyword$.next(v);
   }
 
-  setNewspaper(v: string) {
+  setNewspaper(n: Newspaper) {
     this.page$.next(0);
-    this.newspaper$.next(v);
+    this.newspaper$.next(n);
   }
 
   setDateRange(r: [string, string]) {
@@ -72,21 +72,22 @@ export class ArticleStore {
   private connectToApi() {
     combineLatest([this.keyword$, this.newspaper$, this.dateRange$, this.page$, this.size$])
       .pipe(
-        filter(([_, newspaper]) => newspaper !== ''),
+        filter(([_, newspaper]) => {
+          return newspaper ? (newspaper.id ? true : false) : false;
+        }),
         switchMap(([keyword, newspaper, [start, end], page, size]) => {
-
           return this.api.getArticles({
             start,
             end,
             page,
             size,
-            newspaperName: newspaper,
+            newspaperId: newspaper!.id,
             keyword,
           });
         }),
       )
-      .subscribe((res: Page<Article>) => {
-        this.articles$.next(res.content);
+      .subscribe((res: Page) => {
+        this.articles$.next(res.articles);
         this.totalElements$.next(res.totalElements);
       });
   }

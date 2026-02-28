@@ -7,6 +7,4 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.List;
 
 public interface NewspaperRepository extends JpaRepository<Newspaper, Integer> {
-    @Query("SELECT n.name FROM Newspaper n")
-    List<String> findAllNames();
 }

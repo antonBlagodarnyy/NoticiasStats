@@ -1,5 +1,6 @@
 package com.SinAnimoDeLucro.NoticiasApi.Controllers;
 
+import com.SinAnimoDeLucro.NoticiasApi.Dto.NewspaperDTO;
 import com.SinAnimoDeLucro.NoticiasApi.Services.INewsPaperService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -17,7 +18,7 @@ public class NewspaperController {
   private INewsPaperService newspaperService;
 
   @GetMapping("/get-all")
-  public ResponseEntity<List<String>> getAll() {
+  public ResponseEntity<List<NewspaperDTO>> getAll() {
     return ResponseEntity.ok(newspaperService.findAll());
   }
 }

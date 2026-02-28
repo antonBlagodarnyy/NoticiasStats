@@ -30,7 +30,7 @@ import { filter, take } from 'rxjs';
         (selectionChange)="articleStore.setNewspaper($event.value)"
       >
         @for (newspaper of articleStore.newspapers | async; track newspaper) {
-          <mat-option [value]="newspaper">{{ newspaper }}</mat-option>
+          <mat-option [value]="newspaper">{{ newspaper.name }}</mat-option>
         }
       </mat-select>
     </mat-form-field>

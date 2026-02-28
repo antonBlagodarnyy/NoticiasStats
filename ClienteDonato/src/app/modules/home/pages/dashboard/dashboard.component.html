@@ -2,7 +2,7 @@
   <h1 class="dashboard-title">Estadísticas</h1>
 
   <div class="container-content">
-    <div><app-stats-card></app-stats-card></div>
-    <div><app-stats-card></app-stats-card></div>
+      <app-stats-card [items]="totNews"></app-stats-card>
+      <app-stats-card [items]="topNews"></app-stats-card>
   </div>
 </div>

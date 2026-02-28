@@ -1,17 +1,18 @@
 package com.SinAnimoDeLucro.NoticiasApi.Services;
 
-import com.SinAnimoDeLucro.NoticiasApi.Dto.ArticleDTO;
-import org.springframework.data.domain.Page;
+import com.SinAnimoDeLucro.NoticiasApi.Dto.ArticleStatsDTO;
+import com.SinAnimoDeLucro.NoticiasApi.Dto.PaginatedArticles;
 import java.time.LocalDate;
 
 public interface IArticleService {
-    Page<ArticleDTO> getArticlesInRange(
+
+    PaginatedArticles getArticlesInRange(
             LocalDate start,
             LocalDate end,
             int page,
             int size,
-            String newspaperName
+            Integer newspaperId
     );
 
-    long countArticlesByDateRange(LocalDate startDate, LocalDate endDate);
+    ArticleStatsDTO countArticles();
 }

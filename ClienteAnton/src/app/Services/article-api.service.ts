@@ -2,21 +2,23 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 
+export interface Newspaper {
+  id:number;
+  name: string;
+}
+
 export interface Article {
-  id: number;
   headline: string;
   url: string;
   category: string;
   publishedAt: string;
-  newspaperName: string;
+  newspaper: Newspaper;
 }
 
-export interface Page<T> {
-  content: T[];
+export interface Page {
+  articles: Article[];
   totalElements: number;
   totalPages: number;
-  number: number;
-  size: number;
 }
 
 
@@ -29,7 +31,7 @@ export class ArticleApiService {
   constructor() {}
 
   getNewspapers() {
-    return this.http.get<string[]>(environment.apiUrl +'/api/newspapers/get-all');
+    return this.http.get<Newspaper[]>(environment.apiUrl +'/api/newspapers/get-all');
   }
 
   getArticles(params: {
@@ -37,7 +39,7 @@ export class ArticleApiService {
     end: string;
     page: number;
     size: number;
-    newspaperName: string;
+    newspaperId: number;
     keyword?: string;
   }) {
     let httpParams = new HttpParams()
@@ -45,12 +47,12 @@ export class ArticleApiService {
       .set('end', params.end)
       .set('page', params.page)
       .set('size', params.size)
-      .set('newspaperName', params.newspaperName);
+      .set('newspaperId', params.newspaperId);
 
     if (params.keyword) {
       httpParams = httpParams.set('keyword', params.keyword);
     }
 
-    return this.http.get<Page<Article>>(environment.apiUrl +'/api/article/filter', { params: httpParams });
+    return this.http.get<Page>(environment.apiUrl +'/api/articles/filter', { params: httpParams });
   }
 }

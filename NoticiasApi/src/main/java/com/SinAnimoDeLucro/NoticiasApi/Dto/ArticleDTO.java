@@ -4,7 +4,7 @@ import java.time.LocalDate;
 
 public record ArticleDTO(
         String headline,
-        String newspaperName,
+        NewspaperDTO newspaper,
         String url,
         String category,
         LocalDate publishedAt ) {

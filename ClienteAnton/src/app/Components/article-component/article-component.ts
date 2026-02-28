@@ -9,7 +9,7 @@ import { Article } from '../../Services/article-api.service';
   imports: [MatCardModule, DatePipe, MatChipsModule],
   template: `<mat-card
     ><mat-card-header
-      ><mat-card-title>{{ article().newspaperName }}</mat-card-title></mat-card-header
+      ><mat-card-title>{{ article().newspaper.name }}</mat-card-title></mat-card-header
     >
     <mat-card-content
       ><a href="{{ article().url }}">{{ article().headline }}</a></mat-card-content

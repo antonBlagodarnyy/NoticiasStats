@@ -33,22 +33,31 @@ export class ArticlesService {
   }
 
   findNewsByNewspaperIdAndDate(newspaperId: number | null, startDate: string, endDate: string, page: number, size: number) {
-    const params: any = {
-      startDate,
-      endDate,
-      page,
-      size
-    };
+    let params = new HttpParams()
+      .set('startDate', startDate)
+      .set('endDate', endDate)
+      .set('page', page)
+      .set('size', size);
 
     if (newspaperId !== null) {
-      params.newspaperId = newspaperId;
+      params = params.set('newspaperId', newspaperId);
     }
 
     return this.httpClient.get<IArticlesResponse>(this.url + "articles/by-newspaperid-and-date", { params });
   }
 
   countArticlesByPeriod(period: Period) {
+    return this.getWithPeriod<number>("articles/count-by-period", period);
+  }
+
+  topNewspaperByPeriod(period: Period) {
+    return this.getWithPeriod<{ name: string }>("articles/top-newspaper", period).pipe(
+      map(resp => resp.name)
+    );
+  }
+
+  private getWithPeriod<T>(endpoint: string, period: Period) {
     const params = new HttpParams().set('period', period);
-    return this.httpClient.get<number>(this.url + "articles/total-news", { params });
+    return this.httpClient.get<T>(this.url + endpoint, { params });
   }
 }
