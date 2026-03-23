@@ -81,7 +81,7 @@ public class ArticleServiceImpl implements IArticleService {
                 articleRepository.countByPublishedAtBetween(startDate, endDate),
                 articleRepository.findMostFrequentNewspaperBetweenDates(startDate, endDate, PageRequest.of(0, 1))
                         .getFirst()
-                        .getName()
+
         );
     }
 

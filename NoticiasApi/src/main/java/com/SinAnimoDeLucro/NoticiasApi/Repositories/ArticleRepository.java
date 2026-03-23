@@ -26,11 +26,11 @@ public interface ArticleRepository extends JpaRepository<Article, Integer> {
     @Query("""
     SELECT a.newspaper.name
     FROM Article a
-    WHERE a.published_at BETWEEN :start AND :end
+    WHERE a.publishedAt BETWEEN :start AND :end
     GROUP BY a.newspaper
     ORDER BY COUNT(a.newspaper) DESC
 """)
-    List<Newspaper> findMostFrequentNewspaperBetweenDates(
+    List<String> findMostFrequentNewspaperBetweenDates(
             LocalDate start,
             LocalDate end,
             Pageable pageable

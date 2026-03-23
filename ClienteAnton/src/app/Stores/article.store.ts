@@ -6,7 +6,7 @@ import { Article, ArticleApiService, Newspaper, Page } from '../Services/article
 export class ArticleStore {
   private newspapers$ = new BehaviorSubject<Newspaper[]>([]);
   private keyword$ = new BehaviorSubject('');
-  private newspaper$ = new BehaviorSubject<Newspaper | undefined>(undefined);
+  private newspaper$ = new BehaviorSubject<Newspaper | null>(null);
   private dateRange$ = new BehaviorSubject<[string, string]>([
     this.defaultStart(),
     this.defaultEnd(),
