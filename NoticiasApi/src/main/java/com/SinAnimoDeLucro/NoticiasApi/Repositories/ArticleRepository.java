@@ -2,7 +2,6 @@ package com.SinAnimoDeLucro.NoticiasApi.Repositories;
 
 
 import com.SinAnimoDeLucro.NoticiasApi.Entities.Article;
-import com.SinAnimoDeLucro.NoticiasApi.Entities.Newspaper;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -20,6 +19,14 @@ public interface ArticleRepository extends JpaRepository<Article, Integer> {
             Integer newspaperId,
             Pageable pageable
     );
+    Page<Article> findByPublishedAtBetweenAndNewspaper_IdAndHeadlineContainingIgnoreCase(
+            LocalDate start,
+            LocalDate end,
+            Integer newspaperId,
+            String keyword,
+            Pageable pageable
+    );
+
 
     long countByPublishedAtBetween(LocalDate start, LocalDate end);
 

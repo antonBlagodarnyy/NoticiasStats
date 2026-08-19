@@ -27,16 +27,18 @@ public class ArticleController {
             @RequestParam String end,
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "10") int size,
-            @RequestParam Integer newspaperId
+            @RequestParam Integer newspaperId,
+            @RequestParam(required = false) String keyword
     ) {
         return articleService.getArticlesInRange(
                 LocalDate.parse(start),
                 LocalDate.parse(end),
                 page,
                 size,
-                newspaperId
+                newspaperId, keyword
         );
     }
+
 
     @GetMapping("/count")
     public ResponseEntity<ArticleStatsDTO> getCountArticles() {

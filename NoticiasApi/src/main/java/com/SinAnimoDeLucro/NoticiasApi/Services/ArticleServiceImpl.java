@@ -12,8 +12,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
-import java.time.Period;
-import java.util.Arrays;
 import java.util.stream.Stream;
 
 @Service
@@ -27,18 +25,30 @@ public class ArticleServiceImpl implements IArticleService {
             LocalDate end,
             int page,
             int size,
-            Integer newspaperId
+            Integer newspaperId,
+            String keyword
     ) {
+
         Pageable pageable = PageRequest.of(
                 page,
                 size,
                 Sort.by("publishedAt").descending());
-        Page<ArticleDTO> pageResult = articleRepository.findByPublishedAtBetweenAndNewspaper_Id(
+
+        Page<ArticleDTO> pageResult = keyword != null ?
+                articleRepository.findByPublishedAtBetweenAndNewspaper_IdAndHeadlineContainingIgnoreCase(
                         start,
                         end,
                         newspaperId,
-                        pageable)
-                .map(this::mapToDTO);
+                        keyword,
+                        pageable
+                ).map(this::mapToDTO)
+                :
+                articleRepository.findByPublishedAtBetweenAndNewspaper_Id(
+                                start,
+                                end,
+                                newspaperId,
+                                pageable)
+                        .map(this::mapToDTO);
 
         return new PaginatedArticles(
                 pageResult.getContent(),
@@ -60,7 +70,6 @@ public class ArticleServiceImpl implements IArticleService {
     }
 
 
-    //TODO Genera y devuelve el ArticleStatsDTO, la idea seria generarlo en otro método y mutarlo
     @Transactional(readOnly = true)
     @Override
     public ArticleStatsDTO countArticles() {
@@ -74,7 +83,8 @@ public class ArticleServiceImpl implements IArticleService {
                 .map(start -> countPeriod(start, today))
                 .toArray(ArticleCountDTO[]::new);
 
-        return new ArticleStatsDTO(stats[0], stats[1], stats[2]);}
+        return new ArticleStatsDTO(stats[0], stats[1], stats[2]);
+    }
 
     private ArticleCountDTO countPeriod(LocalDate startDate, LocalDate endDate) {
         return new ArticleCountDTO(

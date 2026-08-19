@@ -7,6 +7,7 @@ import { ArticleStore } from '../../Stores/article.store';
 import { AsyncPipe } from '@angular/common';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { filter, take } from 'rxjs';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-article-filters',
@@ -14,15 +15,21 @@ import { filter, take } from 'rxjs';
     AsyncPipe,
     MatFormFieldModule,
     MatInputModule,
+    MatButtonModule,
     MatSelectModule,
     MatDatepickerModule,
     ReactiveFormsModule,
   ],
   template: ` <div class="container">
+    <div class="container-search">
     <mat-form-field appearance="outline">
       <mat-label>Buscar palabra clave</mat-label>
-      <input matInput />
+      <input matInput [formControl]="keyword" />
     </mat-form-field>
+    <button mat-flat-button (click)="articleStore.setKeyword(keyword.value ?? '')">
+      Buscar
+    </button>
+    </div>
     <mat-form-field appearance="outline">
       <mat-label>Noticiero</mat-label>
       <mat-select
@@ -49,6 +56,8 @@ import { filter, take } from 'rxjs';
 })
 export class ArticleFilters implements OnInit {
   protected articleStore = inject(ArticleStore);
+
+  readonly keyword = new FormControl('');
 
   readonly dateRange = new FormGroup({
     start: new FormControl<Date | null>(null),
