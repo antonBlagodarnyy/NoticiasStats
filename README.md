@@ -6,8 +6,9 @@ Estadístcas de noticieros españoles sin animo de lucro.
 1. Base de datos.
 2. Batch:
     - Scraper de las páginas de los principales noticieros españoles.
-    - Cleaner para borrar las noticias de hace 7 días.
+    - Cleaner para borrar las noticias de hace 30 días.
     - Batch Scheduler que lance los procesos 1 vez al día.
+3. Cron en linux para ejecutar el batch
 4. Api para transformar los datos en estadísticas.
 5. Cliente público.
 
@@ -19,13 +20,13 @@ Estadístcas de noticieros españoles sin animo de lucro.
 
 ## Noticieros usados
 
-- [RTVE](https://www.rtve.es/)
-- [El Mundo](https://www.elmundo.es)
-- [20 Minutos](https://www.20minutos.es/)
-- [La Razón](https://www.larazon.es/)
-- [El país](https://elpais.com/)
-- [ABC](https://www.abc.es/)
-- [El Diario](https://www.eldiario.es/)
+- [x] [RTVE](https://www.rtve.es/) 
+- [x] [El Mundo](https://www.elmundo.es)
+- [x] [20 Minutos](https://www.20minutos.es/)
+- [x] [La Razón](https://www.larazon.es/)
+-  ~~[ ] [El país](https://elpais.com/) ~~
+- [x] [ABC](https://www.abc.es/)
+- [x] [El Diario](https://www.eldiario.es/)
 
 ## Estadísticas
 
@@ -46,10 +47,11 @@ Estadístcas de noticieros españoles sin animo de lucro.
 
 ## v1.0.0-next
 
-1. [ ] Codificación del cliente.
-2. [ ] Codificación del scheduler.
-3. [ ] Añadidos todos los noticieros.
-4. [ ] Despliegue.
+1. [x] Codificación del cliente.
+2. [x] Codificación del scheduler.
+3. [x] Añadidos todos los noticieros.
+4. [x] Despliegue.
+5. [x] Añadido cron.
 
 ## v0.0.1-next
 

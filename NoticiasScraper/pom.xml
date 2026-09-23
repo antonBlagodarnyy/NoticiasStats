@@ -75,7 +75,11 @@
 			<artifactId>spring-boot-starter-batch-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-	</dependencies>
+        <dependency>
+            <groupId>tools.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+        </dependency>
+    </dependencies>
 
 	<build>
 		<plugins>

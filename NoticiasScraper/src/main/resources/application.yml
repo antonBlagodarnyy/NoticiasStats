@@ -1,0 +1,23 @@
+  spring:
+    application:
+      name: NoticiasScrapper
+    jpa:
+      hibernate: ddl-auto:update
+    batch:
+      job:
+        enabled: true
+      jdbc: initialize-schema:always
+  news:
+    sources:
+      RTVE:
+        url: https://www.rtve.es/
+      ElMundo:
+        url: https://www.elmundo.es/
+      20Minutos:
+        url: https://www.20minutos.es/
+      LaRazon:
+        url: https://www.larazon.es/
+      ABC:
+        url: https://www.abc.es/
+      ElDiario:
+        url: https://www.eldiario.es/

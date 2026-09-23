@@ -9,8 +9,7 @@ DROP TABLE IF EXISTS newspapers;
 CREATE TABLE `newspapers`
 (
     id       INT AUTO_INCREMENT PRIMARY KEY,
-    name    VARCHAR(255) NOT NULL UNIQUE,
-    url VARCHAR(255) NOT NULL UNIQUE
+    name    VARCHAR(255) NOT NULL UNIQUE
 );
 
 CREATE TABLE `articles`

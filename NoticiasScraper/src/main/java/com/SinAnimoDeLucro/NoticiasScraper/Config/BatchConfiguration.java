@@ -1,61 +1,60 @@
 package com.SinAnimoDeLucro.NoticiasScraper.Config;
 
 import com.SinAnimoDeLucro.NoticiasScraper.Entities.Article;
-import com.SinAnimoDeLucro.NoticiasScraper.Interfaces.Source;
-import com.SinAnimoDeLucro.NoticiasScraper.Steps.FetchSourcesStep;
+import com.SinAnimoDeLucro.NoticiasScraper.Model.Source;
+import com.SinAnimoDeLucro.NoticiasScraper.Steps.CleanOldArticlesTasklet;
 import com.SinAnimoDeLucro.NoticiasScraper.Steps.ScrapeArticlesStep.ArticleWriter;
 import com.SinAnimoDeLucro.NoticiasScraper.Steps.ScrapeArticlesStep.SourcesProcessor;
 import com.SinAnimoDeLucro.NoticiasScraper.Steps.ScrapeArticlesStep.SourcesReader;
-import org.springframework.batch.core.configuration.annotation.EnableBatchProcessing;
 import org.springframework.batch.core.job.Job;
 import org.springframework.batch.core.job.builder.JobBuilder;
 import org.springframework.batch.core.repository.JobRepository;
 import org.springframework.batch.core.step.Step;
 import org.springframework.batch.core.step.builder.StepBuilder;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.transaction.PlatformTransactionManager;
 
 import java.util.List;
-
 @Configuration
-@EnableBatchProcessing
 public class BatchConfiguration {
 
-  @Autowired
-  private FetchSourcesStep fetchSourcesStep;
 
-  @Autowired
-  private SourcesReader sourcesReader;
+  private final SourcesReader sourcesReader;
+  private final SourcesProcessor sourcesProcessor;
+  private final ArticleWriter articleWriter;
 
-  @Autowired
-  private SourcesProcessor sourcesProcessor;
+  private final JobRepository jobRepository;
+  private final PlatformTransactionManager transactionManager;
 
-  @Autowired
-  private ArticleWriter articleWriter;
+  public BatchConfiguration(
+          JobRepository jobRepository,
+          PlatformTransactionManager transactionManager,
 
-  private JobRepository jobRepository;
-  private PlatformTransactionManager transactionManager;
+          SourcesReader sourcesReader,
+          SourcesProcessor sourcesProcessor,
+          ArticleWriter articleWriter) {
 
-  public BatchConfiguration(JobRepository jobRepository,
-                            PlatformTransactionManager transactionManager) {
     this.jobRepository = jobRepository;
     this.transactionManager = transactionManager;
+
+    this.sourcesReader = sourcesReader;
+    this.sourcesProcessor = sourcesProcessor;
+    this.articleWriter = articleWriter;
   }
+
 
   @Bean
-  public Step fetchNewsSourcesStep() {
-    return new StepBuilder("fetchNewsSourcesStep", jobRepository)
-            .tasklet(fetchSourcesStep, transactionManager)
+  public Step cleanOldArticlesStep(CleanOldArticlesTasklet tasklet) {
+    return new StepBuilder("cleanOldArticlesStep", jobRepository)
+            .tasklet(tasklet, transactionManager)
             .build();
   }
-
 
   @Bean
   public Step scrapeArticlesStep() {
     return new StepBuilder("scrapeArticlesStep", jobRepository)
-            .<Source, List<Article>>chunk(5)
+            .<Source, List<Article>>chunk(1)
             .reader(sourcesReader)
             .processor(sourcesProcessor)
             .writer(articleWriter)
@@ -63,10 +62,10 @@ public class BatchConfiguration {
   }
 
   @Bean
-  public Job runScraperJob(){
+  public Job runScraperJob() {
     return new JobBuilder("runScraperJob", jobRepository)
-      .start(fetchNewsSourcesStep())
-      .next(scrapeArticlesStep())
-      .build();
+            .start(cleanOldArticlesStep(null))
+            .next(scrapeArticlesStep())
+            .build();
   }
 }

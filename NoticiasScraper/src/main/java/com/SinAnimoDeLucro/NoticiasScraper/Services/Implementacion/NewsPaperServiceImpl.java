@@ -1,7 +1,7 @@
 package com.SinAnimoDeLucro.NoticiasScraper.Services.Implementacion;
 
 import com.SinAnimoDeLucro.NoticiasScraper.Entities.Newspaper;
-import com.SinAnimoDeLucro.NoticiasScraper.Interfaces.Source;
+import com.SinAnimoDeLucro.NoticiasScraper.Model.Source;
 import com.SinAnimoDeLucro.NoticiasScraper.Repositories.NewspaperRepository;
 import com.SinAnimoDeLucro.NoticiasScraper.Services.Interfaces.INewspaperService;
 import jakarta.persistence.EntityNotFoundException;
@@ -24,8 +24,5 @@ public class NewsPaperServiceImpl implements INewspaperService {
             .orElseThrow(() -> new EntityNotFoundException(
                     "Newspaper not found with name: " + name));
   }
-  @Override
-  public List<Source> findSources() {
-    return repository.findSources();
-  }
+
 }

@@ -44,8 +44,8 @@ import { MatButtonModule } from '@angular/material/button';
 
     <mat-form-field appearance="outline">
       <mat-label>Escoja un rango de fechas</mat-label>
-      <mat-date-range-input [formGroup]="dateRange" [rangePicker]="picker">
-        <input matStartDate formControlName="start" placeholder="Start date" />
+      <mat-date-range-input [min]="minDate" [max]="maxDate" [formGroup]="dateRange" [rangePicker]="picker">
+        <input matStartDate  [max]="maxDate" />
         <input matEndDate formControlName="end" placeholder="End date" />
       </mat-date-range-input>
       <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
@@ -64,7 +64,13 @@ export class ArticleFilters implements OnInit {
     end: new FormControl<Date | null>(null),
   });
 
+minDate = new Date();
+
+
+maxDate = new Date();
+
   ngOnInit() {
+    this.minDate.setDate(this.minDate.getDate() - 30);
     // One-time initialization from store
     this.articleStore.todaysRange.pipe(take(1)).subscribe(([start, end]) => {
       this.dateRange.setValue({

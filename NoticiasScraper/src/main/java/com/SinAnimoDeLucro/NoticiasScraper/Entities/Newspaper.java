@@ -14,8 +14,6 @@ public class Newspaper{
     @Column(nullable = false, unique = true)
     private String name;
 
-    @Column(nullable = false, unique = true)
-    private String url;
 
     @OneToMany(mappedBy = "newspaper", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Article> articles;
@@ -34,14 +32,6 @@ public class Newspaper{
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getUrl() {
-        return url;
-    }
-
-    public void setUrl(String url) {
-        this.url = url;
     }
 
     public List<Article> getArticles() {
