@@ -1,4 +1,4 @@
 export const environment = {
     production: true,
-    apiUrl: undefined
+    apiUrl:'https://abplay-noticias.duckdns.org'
 };
