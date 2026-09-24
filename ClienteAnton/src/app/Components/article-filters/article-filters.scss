@@ -3,10 +3,16 @@
     justify-content: space-around;
     margin:0 2rem 0 2rem;
 }
-.container-search{
-    display: flex;
-    align-items: center;
-    align-content: center;
-    justify-content: space-evenly;
-    width: 20%;
+.container > * {
+    padding: 0.5rem;
+}
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+    }
+
+    .container-search {
+        flex-direction: column;
+        width: 100%;
+    }
 }

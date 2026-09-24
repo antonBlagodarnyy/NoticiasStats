@@ -12,15 +12,15 @@ import { ArticleStore } from '../../Stores/article.store';
   template: `
   <h2>Articulos</h2>
   <app-article-filters/>
-  <mat-grid-list cols="5" rowHeight="2:1">
+
 
     @for (article of articles(); track $index) {
-      <mat-grid-tile>
+   
       <app-article-component [article]="article" />
-      </mat-grid-tile>
+   
     }
 
-  </mat-grid-list>
+ 
 
   <app-article-paginator/>
   `,

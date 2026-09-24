@@ -26,7 +26,7 @@ import { MatButtonModule } from '@angular/material/button';
       <mat-label>Buscar palabra clave</mat-label>
       <input matInput [formControl]="keyword" />
     </mat-form-field>
-    <button mat-flat-button (click)="articleStore.setKeyword(keyword.value ?? '')">
+    <button mat-button (click)="articleStore.setKeyword(keyword.value ?? '')">
       Buscar
     </button>
     </div>
